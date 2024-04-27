@@ -38,6 +38,7 @@ extension Project {
             platform: platform,
             product: .app,
             bundleId: "d.tatarinova.\(name)",
+            deploymentTarget: .iOS(targetVersion: "16.0", devices: .iphone, supportsMacDesignedForIOS: false),
             infoPlist: .extendingDefault(with: infoPlist),
             sources: ["Targets/\(name)/Sources/**"],
             resources: ["Targets/\(name)/Resources/**"],
