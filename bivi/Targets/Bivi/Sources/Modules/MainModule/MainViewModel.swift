@@ -82,10 +82,6 @@ final class MainViewModel: ObservableObject {
         }
     }
 
-    func liveButtonDidTap() {
-        self.state = state.seekingToLive()
-    }
-
     func sendLogsButtonDidTap() {
         networkManager
             .sendLogs(fileURL: logger.logsFileURL)

@@ -17,7 +17,6 @@ extension MainViewModel {
             var shouldShowPreview: Bool
             var videoPlayer: AVPlayer?
             var playPauseButtonOpacity: Double
-            var videoStartPlayDate: Date?
         }
 
         case loading
@@ -73,7 +72,6 @@ extension MainViewModel {
                 newState.playPauseButtonOpacity = 0.0
                 if newState.shouldShowPreview, let playlistURL = readyState.currentStream.playlistURL {
                     newState.shouldShowPreview = false
-                    newState.videoStartPlayDate = Date()
                     newState.videoPlayer = .playerForURL(playlistURL)
                 }
                 newState.videoPlayer?.play()
@@ -104,20 +102,6 @@ extension MainViewModel {
             }
         }
 
-        func seekingToLive() -> Self {
-            switch self {
-            case .loading, .error:
-                return self
-            case let .ready(readyState):
-                let newState = readyState
-                if let videoStartPlayDate = readyState.videoStartPlayDate {
-                    let passedSeconds = Date().timeIntervalSince1970 - videoStartPlayDate.timeIntervalSince1970
-                    newState.videoPlayer?.seek(to: CMTimeMakeWithSeconds(passedSeconds, preferredTimescale: 1000))
-                }
-                return .ready(newState)
-            }
-        }
-
         func changingCurrentStream(to stream: VideoStream) -> Self {
             switch self {
             case .loading, .error:
@@ -128,7 +112,6 @@ extension MainViewModel {
                     newState.otherStreams[index] = readyState.currentStream
                 }
                 newState.currentStream = stream
-                newState.videoStartPlayDate = nil
                 newState.videoPlayer = nil
                 newState.isPaused = true
                 newState.shouldShowPreview = true

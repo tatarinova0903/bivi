@@ -33,24 +33,22 @@ struct MainView: View {
                                         Image(systemName: "gearshape.fill")
                                     }
                                 )
-                                Menu(
-                                    content: {
-                                        ForEach(viewModel.qualities, id: \.self) { quality in
-                                            Button(quality.height) {
-                                                viewModel.qualityChanged(to: quality)
-                                            }
-                                        }
-                                    },
-                                    label: {
-                                        Text(viewModel.state.currentQuality.height)
-                                            .font(.josefinLight)
-                                    }
-                                )
+
                             },
                         trailing:
-                            LiveButton {
-                                viewModel.liveButtonDidTap()
-                            }
+                            Menu(
+                                content: {
+                                    ForEach(viewModel.qualities, id: \.self) { quality in
+                                        Button(quality.height) {
+                                            viewModel.qualityChanged(to: quality)
+                                        }
+                                    }
+                                },
+                                label: {
+                                    Text(viewModel.state.currentQuality.height)
+                                        .font(.josefinLight)
+                                }
+                            )
                     )
                     .foregroundColor(BiviColors.textColor)
                     .navigationBarColor(
