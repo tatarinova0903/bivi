@@ -25,4 +25,22 @@ public extension SPMDependency {
         name: "Factory",
         requirement: .exact("2.3.2")
     )
+
+    static let cocoaLumberjack = SPMDependency(
+        url: "https://github.com/CocoaLumberjack/CocoaLumberjack",
+        name: "CocoaLumberjack",
+        requirement: .exact("3.8.5")
+    )
+
+    static let cocoaLumberjackSwift = SPMDependency(
+        url: "https://github.com/CocoaLumberjack/CocoaLumberjack",
+        name: "CocoaLumberjackSwift",
+        requirement: .exact("3.8.5")
+    )
+
+    static let swiftUISnackbar = SPMDependency(
+        url: "https://github.com/zaniluca/SwiftUISnackbar",
+        name: "SwiftUISnackbar",
+        requirement: .exact("1.0.0")
+    )
 }

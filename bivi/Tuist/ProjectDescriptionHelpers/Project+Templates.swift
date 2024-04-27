@@ -17,7 +17,8 @@ extension Project {
             name: name,
             organizationName: "d.tatarinova",
             packages: spmDependencies.map { $0.package },
-            targets: targets
+            targets: targets,
+            resourceSynthesizers: []
         )
     }
 
